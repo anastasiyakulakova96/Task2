@@ -1,0 +1,3 @@
+F:\Projects\MainClass\MainClass\bin\Debug\MainClass.exe.config
+F:\Projects\MainClass\MainClass\obj\Debug\MainClass.exe
+F:\Projects\MainClass\MainClass\obj\Debug\MainClass.pdb

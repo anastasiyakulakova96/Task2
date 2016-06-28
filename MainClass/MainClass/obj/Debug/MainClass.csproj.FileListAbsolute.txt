@@ -1,0 +1,16 @@
+c:\users\anastasiya_kulakova\documents\visual studio 2015\Projects\MainClass\MainClass\bin\Debug\MainClass.exe.config
+c:\users\anastasiya_kulakova\documents\visual studio 2015\Projects\MainClass\MainClass\bin\Debug\MainClass.exe
+c:\users\anastasiya_kulakova\documents\visual studio 2015\Projects\MainClass\MainClass\bin\Debug\MainClass.pdb
+c:\users\anastasiya_kulakova\documents\visual studio 2015\Projects\MainClass\MainClass\obj\Debug\MainClass.csprojResolveAssemblyReference.cache
+c:\users\anastasiya_kulakova\documents\visual studio 2015\Projects\MainClass\MainClass\obj\Debug\MainClass.Resource.resources
+c:\users\anastasiya_kulakova\documents\visual studio 2015\Projects\MainClass\MainClass\obj\Debug\MainClass.csproj.GenerateResource.Cache
+c:\users\anastasiya_kulakova\documents\visual studio 2015\Projects\MainClass\MainClass\obj\Debug\MainClass.exe
+c:\users\anastasiya_kulakova\documents\visual studio 2015\Projects\MainClass\MainClass\obj\Debug\MainClass.pdb
+F:\Projects\MainClass\MainClass\bin\Debug\MainClass.exe.config
+F:\Projects\MainClass\MainClass\obj\Debug\MainClass.exe
+F:\Projects\MainClass\MainClass\obj\Debug\MainClass.pdb
+F:\Projects\MainClass\MainClass\bin\Debug\MainClass.exe
+F:\Projects\MainClass\MainClass\bin\Debug\MainClass.pdb
+F:\Projects\MainClass\MainClass\obj\Debug\MainClass.csprojResolveAssemblyReference.cache
+F:\Projects\MainClass\MainClass\obj\Debug\MainClass.Resource.resources
+F:\Projects\MainClass\MainClass\obj\Debug\MainClass.csproj.GenerateResource.Cache
