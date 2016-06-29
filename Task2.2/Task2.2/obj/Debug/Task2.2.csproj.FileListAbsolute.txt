@@ -10,3 +10,9 @@ C:\Task2\Task2.2\Task2.2\obj\Debug\Task2.2.pdb
 C:\Task2\Task2.2\Task2.2\bin\Debug\Task2.2.exe
 C:\Task2\Task2.2\Task2.2\bin\Debug\Task2.2.pdb
 C:\Task2\Task2.2\Task2.2\obj\Debug\Task2.2.csprojResolveAssemblyReference.cache
+C:\epamTask\Task2\Task2.2\Task2.2\bin\Debug\Task2.2.exe.config
+C:\epamTask\Task2\Task2.2\Task2.2\obj\Debug\Task2.2.exe
+C:\epamTask\Task2\Task2.2\Task2.2\obj\Debug\Task2.2.pdb
+C:\epamTask\Task2\Task2.2\Task2.2\bin\Debug\Task2.2.exe
+C:\epamTask\Task2\Task2.2\Task2.2\bin\Debug\Task2.2.pdb
+C:\epamTask\Task2\Task2.2\Task2.2\obj\Debug\Task2.2.csprojResolveAssemblyReference.cache

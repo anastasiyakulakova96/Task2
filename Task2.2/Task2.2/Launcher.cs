@@ -10,51 +10,41 @@ namespace Task2._2
 {
     class Launcher
     {
-        string line = "";
-        string allLines = "";
-        string[] a = { ".", "," };
-        string[] all;
         int numInt;
         double numDouble;
-        string comp = NumberFormatInfo.CurrentInfo.NumberDecimalSeparator;
+        string line = "";
+        string allLines = "";
 
-        List<string> list;
-        List<string> listOfStrings;
+        string separator = NumberFormatInfo.CurrentInfo.NumberDecimalSeparator;
+
         List<string> splitList;
         List<int> listOfIntager;
         List<double> listOfDouble;
-     
-
-
-
+        List<string> listOfStrings;
 
         static void Main(string[] args)
         {
             Launcher launcher = new Launcher();
-            launcher.WriteLine();
+
+            launcher.WriteLines();
             launcher.SplitLines();
             launcher.SearchCountOfIntegerNumbers();
-
             launcher.SearchCountOfDoubleNumbers();
             launcher.ShowIntNumbers();
             launcher.ShowDoubleNumbers();
+            launcher.SearchString();
+            launcher.SortString();
 
-
-            launcher.SearchCountOfString();
-            
             Console.ReadLine();
-
-
-
-
         }
 
 
-        void WriteLine()
+        public void WriteLines()
         {
             splitList = new List<string>();
-            list = new List<string>();
-            Console.WriteLine($"enter line. if you want exit enter 'end' and key 'Enter'. Please enter double numbers with '{comp}'");
+
+            Console.WriteLine("Enter lines.If you want exit press 'Enter' and input 'end' then press 'Enter' again." +
+                                $"Please enter double numbers with '{separator}'");
 
             do
             {
@@ -63,30 +53,19 @@ namespace Task2._2
             }
             while (!line.Equals("end"));
 
-            // Console.WriteLine(allLines);
-
-
-
-
+            Console.WriteLine("");
         }
 
 
         public void SplitLines()
         {
-            all = allLines.Split(' ');
+            string[] lines = allLines.Split(' ');
 
-            for (int i = 0; i < all.Length; i++)
+            for (int i = 0; i < lines.Length; i++)
             {
-                splitList.Add(all[i]);
+                splitList.Add(lines[i]);
             }
-
-            //splitList.ForEach(delegate (String name)
-            //{
-            //    Console.WriteLine("разделенный "+name);
-            //});
         }
-
-
 
 
         public List<int> SearchCountOfIntegerNumbers()
@@ -100,74 +79,106 @@ namespace Task2._2
                     listOfIntager.Add(numInt);
                 }
             }
-            Console.WriteLine("Count integer number: " + listOfIntager.Count);
+
+            Console.WriteLine($"Count integer numbers: {listOfIntager.Count}");
 
             return listOfIntager;
         }
 
 
-
         public List<double> SearchCountOfDoubleNumbers()
         {
-             listOfDouble = new List<double>();
+            listOfDouble = new List<double>();
 
             foreach (var item in splitList)
             {
-
                 if (item.Contains(".") || item.Contains(","))
                 {
-                    if (Double.TryParse(item, out numDouble)) {
+                    string rewriteSeperator = item;
+                    if (separator.Equals("."))
+                    {
+                        rewriteSeperator = item.Replace(',', '.');
+                    }
+                    else if (separator.Equals(","))
+                    {
+                        rewriteSeperator = item.Replace('.', ',');
+                    }
+
+                    if (Double.TryParse(rewriteSeperator, out numDouble))
+                    {
                         listOfDouble.Add(numDouble);
                     }
-                    
+
                 }
             }
 
-            Console.WriteLine("Count float number: " + listOfDouble.Count);
+            Console.WriteLine($"Count double numbers: {listOfDouble.Count} \n");
 
             return listOfDouble;
         }
 
-        public List<string> SearchCountOfString()
+
+        public List<string> SearchString()
         {
             listOfStrings = new List<string>();
 
             foreach (var item in splitList)
             {
-                if (!Int32.TryParse(item, out numInt) && !((item.Contains(".") || item.Contains(",")) && Double.TryParse(item, out numDouble)))
+                string rewriteSeperator = item;
+
+                if (separator.Equals("."))
                 {
-                    listOfStrings.Add(item);
+                    rewriteSeperator = item.Replace(',', '.');
+                }
+                else if (separator.Equals(","))
+                {
+                    rewriteSeperator = item.Replace('.', ',');
+                }
+
+                if (!Int32.TryParse(rewriteSeperator, out numInt)
+                    && !((rewriteSeperator.Contains(".") || rewriteSeperator.Contains(",")) && Double.TryParse(rewriteSeperator, out numDouble)))
+                {
+                    listOfStrings.Add(rewriteSeperator);
                 }
             }
-
-
-            var l = listOfStrings.OrderBy(x => x.Length).ThenBy(x => x);
-            Console.WriteLine("not numbers: ");
-
-            foreach (var a in l)
-            {
-                Console.WriteLine(a);
-            }
-
-
             return listOfStrings;
         }
+
+
+        public void SortString()
+        {
+            var sortString = listOfStrings.OrderBy(x => x.Length).ThenBy(x => x);
+
+            Console.WriteLine("Not numbers: ");
+
+            foreach (var i in sortString)
+            {
+                if (i.Length > 0)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+        }
+
 
         public void ShowIntNumbers()
         {
             int sum = 0;
             float avg = 0;
 
-            Console.WriteLine("integer numbers: ");
-            foreach (int s in listOfIntager)
+            Console.WriteLine("Integer numbers: ");
+
+            if (listOfIntager.Count != 0)
             {
-                sum = listOfIntager.Sum();
-                Console.WriteLine(s.ToString().PadLeft(90));
+                foreach (int s in listOfIntager)
+                {
+                    sum = listOfIntager.Sum();
+                    Console.WriteLine(s.ToString().PadLeft(115));
+                }
+                avg = (float)sum / listOfIntager.Count();
             }
-            avg = (float)sum / listOfIntager.Count();
 
-            Console.WriteLine("average " + avg.ToString().PadLeft(85));
-
+            Console.WriteLine("Average integer numbers: " + avg.ToString().PadLeft(90)+"\n");
         }
 
 
@@ -176,83 +187,25 @@ namespace Task2._2
             double sum = 0;
             double avg = 0;
 
-            Console.WriteLine("double numbers: ");
-            foreach (int s in listOfDouble)
+            if (listOfDouble.Count != 0)
             {
-                sum = listOfDouble.Sum();
-                Console.WriteLine(s.ToString("0.00").PadLeft(90));
+                Console.WriteLine("Double numbers: ");
+
+                foreach (double s in listOfDouble)
+                {
+                    sum = listOfDouble.Sum();
+                    Console.WriteLine(s.ToString("0.00").PadLeft(115));
+                }
+
+                avg = (double)sum / listOfDouble.Count();
             }
-            avg = (double)sum / listOfDouble.Count();
-           // Console.WriteLine(AverageOfDouble(list).ToString("0.00").PadLeft(90));
-            Console.WriteLine("average " + avg.ToString("0.00").PadLeft(85));
+
+            Console.WriteLine("Average double numbers: " + avg.ToString("0.00").PadLeft(91)+"\n");
         }
-
-       
-
 
     }
 }
 
 
 
-  //for (int i = 0; i<all.Length; i++)
-  //          {
-
-  //             if (all[i].Contains(".")|| all[i].Contains(","))
-  //              {
-  //                  foreach (var item in splitList)
-  //                  {
-  //                      if (float.TryParse(item, out num))
-  //                      {
-  //                          listOfFloat.Add(num);
-  //                        //  Console.WriteLine("num: " + num);
-  //                      }
-  //                  }
-  //                      Console.WriteLine("Count float number: " + listOfFloat.Count);
-
-  //              }
-  //          }
-
-
-//while (true)
-//{
-//    Console.WriteLine("What you want do?\n"
-//        + "1 - Enter lines \n "
-//        + "2 - \n"
-//        + "3 - exit\n");
-//    ConsoleKeyInfo consoleKey = Console.ReadKey();
-//    switch (consoleKey.Key)
-//    {
-//        case ConsoleKey.D1:
-//            launcher.WriteLine();
-//            break;
-//        case ConsoleKey.D2:
-//            launcher.SplitLines();
-//            break;
-//        case ConsoleKey.D3:
-//            return;
-//        default:
-//            Console.WriteLine("Default case");
-//            break;
-//    }
-//}
-
-
-//void SearchCountOfFloatNumbers1()
-//{
-//   int i = 0;
-//    foreach (String s in allLines.Split(' '))
-//    {
-//        string str = s.Replace('.', ',');
-//        if (IsFloat(str)) i++;
-//    }
-//    Console.WriteLine("\nFloat numbers: " + i);
-//}
-
-
-//public static bool IsFloat(string sValue)
-//{
-//    Regex objReg = new Regex(@"(-|)[0-2],\d{1,2}");
-//    Match objMatch = objReg.Match(sValue);
-//    return objMatch.Success;
-//}
+ 
