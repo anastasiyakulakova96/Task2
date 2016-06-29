@@ -10,17 +10,24 @@ namespace Task2._2
 {
     class Launcher
     {
-        int numInt;
-        double numDouble;
-        string line = "";
-        string allLines = "";
 
-        string separator = NumberFormatInfo.CurrentInfo.NumberDecimalSeparator;
+        public int numInt;
+        public double numDouble;
+        public string line = "";
+        public string allLines = "";
+        public int padLeftForAverage = 90;
+        public int padLeftForNumbers = 115;
+        public string breakEnterLines = "end";
+        public string separatorFirst = ".";
+        public string separatorSecond = ",";
+        public char separatorForReplaceFirst = '.';
+        public char separatorForReplaceSecond = ',';
+        public string separatorOnComputer = NumberFormatInfo.CurrentInfo.NumberDecimalSeparator;
 
-        List<string> splitList;
-        List<int> listOfIntager;
-        List<double> listOfDouble;
-        List<string> listOfStrings;
+        public List<string> splitList;
+        public List<int> listOfIntager;
+        public List<double> listOfDouble;
+        public List<string> listOfStrings;
 
         static void Main(string[] args)
         {
@@ -30,9 +37,9 @@ namespace Task2._2
             launcher.SplitLines();
             launcher.SearchCountOfIntegerNumbers();
             launcher.SearchCountOfDoubleNumbers();
-            launcher.ShowIntNumbers();
+            launcher.ShowIntegerNumbers();
             launcher.ShowDoubleNumbers();
-            launcher.SearchString();
+            launcher.RecordStrintInList();
             launcher.SortString();
 
             Console.ReadLine();
@@ -44,14 +51,14 @@ namespace Task2._2
             splitList = new List<string>();
 
             Console.WriteLine("Enter lines.If you want exit press 'Enter' and input 'end' then press 'Enter' again." +
-                                $"Please enter double numbers with '{separator}'");
+                                $"Please enter double numbers with '{separatorOnComputer}'\n");
 
             do
             {
                 allLines = line + " " + allLines;
                 line = Console.ReadLine();
             }
-            while (!line.Equals("end"));
+            while (!line.Equals(breakEnterLines));
 
             Console.WriteLine("");
         }
@@ -68,7 +75,7 @@ namespace Task2._2
         }
 
 
-        public List<int> SearchCountOfIntegerNumbers()
+        public void SearchCountOfIntegerNumbers()
         {
             listOfIntager = new List<int>();
 
@@ -82,26 +89,25 @@ namespace Task2._2
 
             Console.WriteLine($"Count integer numbers: {listOfIntager.Count}");
 
-            return listOfIntager;
         }
 
 
-        public List<double> SearchCountOfDoubleNumbers()
+        public void SearchCountOfDoubleNumbers()
         {
             listOfDouble = new List<double>();
 
             foreach (var item in splitList)
             {
-                if (item.Contains(".") || item.Contains(","))
+                if (item.Contains(separatorFirst) || item.Contains(separatorSecond))
                 {
                     string rewriteSeperator = item;
-                    if (separator.Equals("."))
+                    if (separatorOnComputer.Equals(separatorFirst))
                     {
-                        rewriteSeperator = item.Replace(',', '.');
+                        rewriteSeperator = item.Replace(separatorForReplaceSecond, separatorForReplaceFirst);
                     }
-                    else if (separator.Equals(","))
+                    else if (separatorOnComputer.Equals(separatorSecond))
                     {
-                        rewriteSeperator = item.Replace('.', ',');
+                        rewriteSeperator = item.Replace(separatorForReplaceFirst, separatorForReplaceSecond);
                     }
 
                     if (Double.TryParse(rewriteSeperator, out numDouble))
@@ -114,11 +120,10 @@ namespace Task2._2
 
             Console.WriteLine($"Count double numbers: {listOfDouble.Count} \n");
 
-            return listOfDouble;
         }
 
 
-        public List<string> SearchString()
+        public List<string> RecordStrintInList()
         {
             listOfStrings = new List<string>();
 
@@ -126,17 +131,17 @@ namespace Task2._2
             {
                 string rewriteSeperator = item;
 
-                if (separator.Equals("."))
+                if (separatorOnComputer.Equals(separatorFirst))
                 {
-                    rewriteSeperator = item.Replace(',', '.');
+                    rewriteSeperator = item.Replace(separatorForReplaceSecond, separatorForReplaceFirst);
                 }
-                else if (separator.Equals(","))
+                else if (separatorOnComputer.Equals(separatorSecond))
                 {
-                    rewriteSeperator = item.Replace('.', ',');
+                    rewriteSeperator = item.Replace(separatorForReplaceFirst, separatorForReplaceSecond);
                 }
 
                 if (!Int32.TryParse(rewriteSeperator, out numInt)
-                    && !((rewriteSeperator.Contains(".") || rewriteSeperator.Contains(",")) && Double.TryParse(rewriteSeperator, out numDouble)))
+                    && !((rewriteSeperator.Contains(separatorFirst) || rewriteSeperator.Contains(separatorSecond)) && Double.TryParse(rewriteSeperator, out numDouble)))
                 {
                     listOfStrings.Add(rewriteSeperator);
                 }
@@ -161,7 +166,7 @@ namespace Task2._2
         }
 
 
-        public void ShowIntNumbers()
+        public void ShowIntegerNumbers()
         {
             int sum = 0;
             float avg = 0;
@@ -173,12 +178,12 @@ namespace Task2._2
                 foreach (int s in listOfIntager)
                 {
                     sum = listOfIntager.Sum();
-                    Console.WriteLine(s.ToString().PadLeft(115));
+                    Console.WriteLine(s.ToString().PadLeft(padLeftForNumbers));
                 }
-                avg = (float)sum / listOfIntager.Count();
+                avg = (float)(sum / listOfIntager.Count());
             }
 
-            Console.WriteLine("Average integer numbers: " + avg.ToString().PadLeft(90)+"\n");
+            Console.WriteLine("Average integer numbers: " + avg.ToString().PadLeft(padLeftForAverage) + "\n");
         }
 
 
@@ -194,13 +199,13 @@ namespace Task2._2
                 foreach (double s in listOfDouble)
                 {
                     sum = listOfDouble.Sum();
-                    Console.WriteLine(s.ToString("0.00").PadLeft(115));
+                    Console.WriteLine(s.ToString("0.00").PadLeft(padLeftForNumbers));
                 }
 
-                avg = (double)sum / listOfDouble.Count();
+                avg = (double)(sum / listOfDouble.Count());
             }
 
-            Console.WriteLine("Average double numbers: " + avg.ToString("0.00").PadLeft(91)+"\n");
+            Console.WriteLine("Average double numbers: " + avg.ToString("0.00").PadLeft(padLeftForAverage) + "\n");
         }
 
     }
