@@ -1,3 +1,6 @@
 F:\Projects\MainClass\MainClass\bin\Debug\MainClass.exe.config
 F:\Projects\MainClass\MainClass\obj\Debug\MainClass.exe
 F:\Projects\MainClass\MainClass\obj\Debug\MainClass.pdb
+C:\Task2\MainClass\MainClass\bin\Debug\MainClass.exe.config
+C:\Task2\MainClass\MainClass\obj\Debug\MainClass.exe
+C:\Task2\MainClass\MainClass\obj\Debug\MainClass.pdb

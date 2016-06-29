@@ -61,7 +61,7 @@ namespace MainClass {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to F:\file.txt.
+        ///   Looks up a localized string similar to D:\file.txt.
         /// </summary>
         internal static string Path {
             get {
